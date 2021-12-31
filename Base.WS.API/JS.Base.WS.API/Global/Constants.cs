@@ -49,15 +49,6 @@ namespace JS.Base.WS.API.Global
             public const string Card = "Card";
         }
 
-        public static class AppointmentStatus
-        {
-            public const string Pending = "Pending";
-            public const string OnHold = "OnHold";
-            public const string InProcess = "InProcess";
-            public const string Finished = "Finished";
-            public const string Cancelled = "Cancelled";
-        }
-
 
         public static class PurchaseTransactionTypes
         {
