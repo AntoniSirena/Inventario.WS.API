@@ -66,21 +66,6 @@ namespace JS.Base.WS.API.Controllers
 
 
         [HttpGet]
-        [Route("GetCompanyCategories")]
-        public IHttpActionResult GetCompanyCategories()
-        {
-            var result = db.CompanyCategories.Where(x => x.IsActive == true).Select(y => new CompanyCategoryDTO
-            {
-                Id = y.Id,
-                Description = y.Description,
-                ShortName = y.ShortName
-            }).OrderBy(x => x.Description).ToList();
-
-            return Ok(result);
-        }
-
-
-        [HttpGet]
         [Route("GetUserTypes")]
         public IHttpActionResult GetUserTypes()
         {

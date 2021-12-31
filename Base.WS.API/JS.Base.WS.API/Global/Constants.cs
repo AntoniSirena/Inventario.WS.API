@@ -49,43 +49,6 @@ namespace JS.Base.WS.API.Global
             public const string Card = "Card";
         }
 
-        public static class AppointmentStatus
-        {
-            public const string Pending = "Pending";
-            public const string OnHold = "OnHold";
-            public const string InProcess = "InProcess";
-            public const string Finished = "Finished";
-            public const string Cancelled = "Cancelled";
-        }
-
-
-        public static class PurchaseTransactionTypes
-        {
-            public const string Request = "Request";
-            public const string Order = "Order";
-        }
-
-        public static class PurchaseTransactionStatus
-        {
-            public const string PendingToDelivery = "PendingToDelivery";
-            public const string Delivered = "Delivered";
-            public const string InProcess = "InProcess";
-            public const string PendingToPay = "PendingToPay";
-            public const string Payed = "Payed";
-            public const string Cancelled = "Cancelled";
-            public const string PendingToConfirm = "PendingToConfirm";
-            public const string Reception = "Reception";
-        }
-
-        public static class PurchaseTransactionStatusDetails
-        {
-            public const string PendingToReceive = "PendingToReceive";
-            public const string Received = "Received";
-            public const string InProcess = "InProcess";
-            public const string Delivered = "Delivered";
-            public const string Cancelled = "Cancelled";
-        }
-
 
         public static class DocumentTypes
         {
@@ -96,8 +59,8 @@ namespace JS.Base.WS.API.Global
 
         public static class UserTypes
         {
-            public const string Person = "Person";
-            public const string Enterprise = "Enterprise";
+            public const string Interno = "Interno";
+            public const string Externo = "Externo";
         }
 
         public static class InternalResponseMessageGood
