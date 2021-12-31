@@ -387,12 +387,12 @@ namespace JS.Base.WS.API.Controllers.Authorization
 
                 string menuTemplate = string.Empty;
 
-                if (currentUser.UserType.ShortName.Equals(Constants.UserTypes.Person))
+                if (currentUser.UserType.ShortName.Equals(Constants.UserTypes.Interno))
                 {
                     menuTemplate = currentRole.MenuTemplate;
                 }
 
-                if (currentUser.UserType.ShortName.Equals(Constants.UserTypes.Enterprise))
+                if (currentUser.UserType.ShortName.Equals(Constants.UserTypes.Externo))
                 {
                     menuTemplate = currentRole.EnterpriseMenuTemplate;
                 }

@@ -58,8 +58,8 @@ namespace JS.Base.WS.API.Migrations
 
             context.UserTypes.AddOrUpdate(
                 x => x.ShortName,
-                new UserType { ShortName = "Person", Description = "Cliente", ShowToCustomer = true, IsActive = true, CreatorUserId = userId, CreationTime = DateTime.Now },
-                new UserType { ShortName = "Enterprise", Description = "Proveedor", ShowToCustomer = true, IsActive = true, CreatorUserId = userId, CreationTime = DateTime.Now }
+                new UserType { ShortName = "Interno", Description = "Interno", ShowToCustomer = true, IsActive = true, CreatorUserId = userId, CreationTime = DateTime.Now },
+                new UserType { ShortName = "Externo", Description = "Externo", ShowToCustomer = true, IsActive = true, CreatorUserId = userId, CreationTime = DateTime.Now }
                 );
 
             context.Genders.AddOrUpdate(
