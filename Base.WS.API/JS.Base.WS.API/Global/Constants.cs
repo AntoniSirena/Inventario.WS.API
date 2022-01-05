@@ -161,17 +161,15 @@ namespace JS.Base.WS.API.Global
 
             public static string LoginTime { get { return ConfigurationParameterService.GetParameter("LoginTime") ?? "5"; } }
 
-            public static string RoleExternalUser { get { return ConfigurationParameterService.GetParameter("RoleExternalUser") ?? "Client"; } }
+            public static string RoleExternalUser { get { return ConfigurationParameterService.GetParameter("RoleExternalUser") ?? "Usuario"; } }
 
             public static string EnableRegistrationButton { get { return ConfigurationParameterService.GetParameter("EnableRegistrationButton") ?? "0"; } }
 
             public static string Required_SecurityCodeExternaRegister { get { return ConfigurationParameterService.GetParameter("Required_SecurityCodeExternaRegister") ?? "0"; } }
 
-            public static string ViewAllAccompanyingInstrumentRequests_ByRoles { get { return ConfigurationParameterService.GetParameter("ViewAllAccompanyingInstrumentRequests_ByRoles") ?? ","; } }
-
             public static string FileDirectory { get { return ConfigurationParameterService.GetParameter("FileDirectory") ?? @"C:\Shared\File"; } }
 
-            public static string PublicityFileDirectory { get { return ConfigurationParameterService.GetParameter("PublicityFileDirectory") ?? @"C:\SharedGuerra\Publicity\Novelties"; } }
+            public static string PublicityFileDirectory { get { return ConfigurationParameterService.GetParameter("PublicityFileDirectory") ?? @"C:\SharedInventario\Publicity\Novelties"; } }
 
             public static string FileTypeAllowed { get { return ConfigurationParameterService.GetParameter("FileTypeAllowed") ?? string.Empty; } }
 
@@ -189,27 +187,11 @@ namespace JS.Base.WS.API.Global
 
             public static string SecurityCode_ExpirationTime_SecondFactorAuthentication { get { return ConfigurationParameterService.GetParameter("SecurityCode_ExpirationTime_SecondFactorAuthentication") ?? "2"; } }
 
-            public static string AllowViewAllEnterprisesByRoles { get { return ConfigurationParameterService.GetParameter("AllowViewAllEnterprisesByRoles") ?? "SuperAdmin,Admin"; } }
-
-            public static string EnterpriseImgDirectory { get { return ConfigurationParameterService.GetParameter("EnterpriseImgDirectory") ?? @"C:\SharedGuerra\Enterprise\Images"; } }
+            public static string EnterpriseImgDirectory { get { return ConfigurationParameterService.GetParameter("EnterpriseImgDirectory") ?? @"C:\SharedInventario\Enterprise\Images"; } }
             
-            public static string AllowViewAllAppointmentByRoles { get { return ConfigurationParameterService.GetParameter("AllowViewAllAppointmentByRoles") ?? "SuperAdmin,Admin"; } }
-
-            public static string MarketImgDirectory { get { return ConfigurationParameterService.GetParameter("MarketImgDirectory") ?? @"C:\SharedGuerra\Market\Images"; } }
-
-            public static string AllowViewAllMarketsByRoles { get { return ConfigurationParameterService.GetParameter("AllowViewAllMarketsByRoles") ?? "SuperAdmin,Admin"; } }
-
-            public static string MaximumImgQuantityMarketDetail { get { return ConfigurationParameterService.GetParameter("MaximumImgQuantityMarketDetail") ?? "5"; } }
-
-            public static string ItemsByPageMarkeetPlace { get { return ConfigurationParameterService.GetParameter("ItemsByPageMarkeetPlace") ?? "6"; } }
-
             public static string UserAvataDefault { get { return ConfigurationParameterService.GetParameter("UserAvataDefault") ?? ""; } }
 
-            public static string UserAvatarFileDirectory { get { return ConfigurationParameterService.GetParameter("UserAvatarFileDirectory") ?? ""; } }
-
-            public static string EnableShoppingCart { get { return ConfigurationParameterService.GetParameter("EnableShoppingCart") ?? "false"; } }
-
-            public static string PathReportOrder { get { return ConfigurationParameterService.GetParameter("PathReportOrder") ?? ""; } }           
+            public static string UserAvatarFileDirectory { get { return ConfigurationParameterService.GetParameter("UserAvatarFileDirectory") ?? ""; } }         
 
         }
 

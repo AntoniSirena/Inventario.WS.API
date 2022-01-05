@@ -352,8 +352,6 @@ namespace JS.Base.WS.API.Controllers.Authorization
                         RoleParent = userRole.Role.Parent,
                         IsVisitorUser = currentUser.IsVisitorUser,
 
-                        EnableShoppingCart = Convert.ToBoolean(Constants.ConfigurationParameter.EnableShoppingCart),
-
                         //Crud
                         CanEdit = userRole.Role.CanEdit,
                         CanDelete = userRole.Role.CanDelete,

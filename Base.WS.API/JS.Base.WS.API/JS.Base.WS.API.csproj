@@ -239,6 +239,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\ConfigurationParameterController.cs" />
+    <Compile Include="Controllers\Domain\ProductController.cs" />
     <Compile Include="Controllers\Enterprise\EnterpriseController.cs" />
     <Compile Include="Controllers\External\ExternalController.cs" />
     <Compile Include="Controllers\FileUploadController.cs" />
@@ -260,6 +261,7 @@
     <Compile Include="DTO\Common\RoleDto.cs" />
     <Compile Include="DTO\Common\UserDto.cs" />
     <Compile Include="DTO\Common\UserTypeDTO.cs" />
+    <Compile Include="DTO\Domain\ProductDTO.cs" />
     <Compile Include="DTO\Request\UploadFile.cs" />
     <Compile Include="DTO\Request\UserRequest.cs" />
     <Compile Include="DTO\Request\UserRequestExternal.cs" />
@@ -285,9 +287,14 @@
     <Compile Include="Global\Constants.cs" />
     <Compile Include="Helpers\CacheStorage.cs" />
     <Compile Include="Helpers\CurrentUser.cs" />
+    <Compile Include="Migrations\202201032024186_product.cs" />
+    <Compile Include="Migrations\202201032024186_product.Designer.cs">
+      <DependentUpon>202201032024186_product.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Authorization\UserType.cs" />
     <Compile Include="Models\Currency.cs" />
     <Compile Include="Models\Domain\PaymentMethod.cs" />
+    <Compile Include="Models\Domain\Product\Product.cs" />
     <Compile Include="Models\Domain\ScheduleHour.cs" />
     <Compile Include="Models\EnterpriseConf\Enterprise.cs" />
     <Compile Include="Models\FileDocument\FileDocument.cs" />
@@ -386,7 +393,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\Domain\" />
     <Folder Include="DTO\Request\Domain\" />
     <Folder Include="obj\" />
     <Folder Include="Services\Domain\" />
@@ -430,6 +436,11 @@
       <Project>{29b76c64-bae1-498a-b4e4-23b0676e1beb}</Project>
       <Name>JS.Utilities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202201032024186_product.resx">
+      <DependentUpon>202201032024186_product.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

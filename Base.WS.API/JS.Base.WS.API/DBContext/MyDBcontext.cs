@@ -2,6 +2,7 @@
 using JS.Base.WS.API.Models.Authorization;
 using JS.Base.WS.API.Models.Configuration;
 using JS.Base.WS.API.Models.Domain;
+using JS.Base.WS.API.Models.Domain.Product;
 using JS.Base.WS.API.Models.EnterpriseConf;
 using JS.Base.WS.API.Models.FileDocument;
 using JS.Base.WS.API.Models.Permission;
@@ -64,6 +65,7 @@ namespace JS.Base.WS.API.DBContext
 
 
         //Domain
+        public virtual DbSet<Product> Products { get; set; }
 
 
     }

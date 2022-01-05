@@ -868,3 +868,5 @@ C:\Users\TEMP\Documents\Clients\Inventario\Inventario.WS.API\Base.WS.API\JS.Base
 C:\Users\TEMP\Documents\Clients\Inventario\Inventario.WS.API\Base.WS.API\JS.Base.WS.API\obj\Debug\JS.Base.WS.API.csproj.CopyComplete
 C:\Users\TEMP\Documents\Clients\Inventario\Inventario.WS.API\Base.WS.API\JS.Base.WS.API\obj\Debug\JS.Base.WS.API.dll
 C:\Users\TEMP\Documents\Clients\Inventario\Inventario.WS.API\Base.WS.API\JS.Base.WS.API\obj\Debug\JS.Base.WS.API.pdb
+C:\Users\TEMP\Documents\Clients\Inventario\Inventario.WS.API\Base.WS.API\JS.Base.WS.API\obj\Debug\JS.Base.WS.API.Migrations.product.resources
+C:\Users\TEMP\Documents\Clients\Inventario\Inventario.WS.API\Base.WS.API\JS.Base.WS.API\obj\Debug\JS.Base.WS.API.csproj.GenerateResource.cache

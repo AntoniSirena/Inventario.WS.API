@@ -45,84 +45,40 @@ namespace JS.Base.WS.API.Controllers
 
             var userRole = db.UserRoles.Where(x => x.UserId == currentUserId).FirstOrDefault();
 
-            string[] AllowViewAllEnterprisesByRoles = ConfigurationParameter.AllowViewAllEnterprisesByRoles.Split(',');
-
-            if (AllowViewAllEnterprisesByRoles.Contains(userRole.Role.ShortName))
+            result = db.Enterprises.Where(c => c.UserId == currentUserId && c.IsActive == true).Select(x => new EnterpriseDto()
             {
-                result = db.Enterprises.Where(y => y.IsActive == true).Select(x => new EnterpriseDto()
-                {
-                    Id = x.Id,
-                    UserId = x.UserId,
-                    PropetaryName = x.PropetaryName,
-                    Name = x.Name,
-                    RNC = x.RNC,
-                    CommercialRegister = x.CommercialRegister,
-                    PhoneNumber = x.PhoneNumber,
-                    Email = x.Email,
-                    Address = x.Address,
-                    Sigla = x.Sigla,
-                    Slogan = x.Slogan,
-                    WorkSchedule = x.WorkSchedule,
-                    AvailableOnlineAppointment = x.AvailableOnlineAppointment,
-                    Image = x.Image,
-                    ImagePath = x.ImagePath,
-                    ImageContenTypeShort = x.ImageContenTypeShort,
-                    ImageContenTypeLong = x.ImageContenTypeLong,
-                    ServiceTime = x.ServiceTime,
-                    NumberAppointmentsAttendedByDay = x.NumberAppointmentsAttendedByDay,
-                    EnterpriseDescription = x.EnterpriseDescription,
-                    ScheduleHourId = x.ScheduleHourId,
-                    ScheduleHourValue = x.ScheduleHour != null ? x.ScheduleHour.Value : 0,
-                    ScheduleHourCloseId = x.ScheduleHourCloseId,
-                    ScheduleHourCloseValue = x.ScheduleHourClose != null ? x.ScheduleHourClose.Value : 0,
-                    CreationTime = x.CreationTime,
-                    CreatorUserId = x.CreatorUserId,
-                    LastModificationTime = x.LastModificationTime,
-                    LastModifierUserId = x.LastModifierUserId,
-                    DeletionTime = x.DeletionTime,
-                    DeleterUserId = x.DeleterUserId,
+                Id = x.Id,
+                UserId = x.UserId,
+                PropetaryName = x.PropetaryName,
+                Name = x.Name,
+                RNC = x.RNC,
+                CommercialRegister = x.CommercialRegister,
+                PhoneNumber = x.PhoneNumber,
+                Email = x.Email,
+                Address = x.Address,
+                Sigla = x.Sigla,
+                Slogan = x.Slogan,
+                WorkSchedule = x.WorkSchedule,
+                AvailableOnlineAppointment = x.AvailableOnlineAppointment,
+                Image = x.Image,
+                ImagePath = x.ImagePath,
+                ImageContenTypeShort = x.ImageContenTypeShort,
+                ImageContenTypeLong = x.ImageContenTypeLong,
+                ServiceTime = x.ServiceTime,
+                NumberAppointmentsAttendedByDay = x.NumberAppointmentsAttendedByDay,
+                EnterpriseDescription = x.EnterpriseDescription,
+                ScheduleHourId = x.ScheduleHourId,
+                ScheduleHourValue = x.ScheduleHour != null ? x.ScheduleHour.Value : 0,
+                ScheduleHourCloseId = x.ScheduleHourCloseId,
+                ScheduleHourCloseValue = x.ScheduleHourClose != null ? x.ScheduleHourClose.Value : 0,
+                CreationTime = x.CreationTime,
+                CreatorUserId = x.CreatorUserId,
+                LastModificationTime = x.LastModificationTime,
+                LastModifierUserId = x.LastModifierUserId,
+                DeletionTime = x.DeletionTime,
+                DeleterUserId = x.DeleterUserId,
 
-                }).OrderByDescending(y => y.Id).ToList();
-
-            }
-            else
-            {
-                result = db.Enterprises.Where(c => c.UserId == currentUserId && c.IsActive == true).Select(x => new EnterpriseDto()
-                {
-                    Id = x.Id,
-                    UserId = x.UserId,
-                    PropetaryName = x.PropetaryName,
-                    Name = x.Name,
-                    RNC = x.RNC,
-                    CommercialRegister = x.CommercialRegister,
-                    PhoneNumber = x.PhoneNumber,
-                    Email = x.Email,
-                    Address = x.Address,
-                    Sigla = x.Sigla,
-                    Slogan = x.Slogan,
-                    WorkSchedule = x.WorkSchedule,
-                    AvailableOnlineAppointment = x.AvailableOnlineAppointment,
-                    Image = x.Image,
-                    ImagePath = x.ImagePath,
-                    ImageContenTypeShort = x.ImageContenTypeShort,
-                    ImageContenTypeLong = x.ImageContenTypeLong,
-                    ServiceTime = x.ServiceTime,
-                    NumberAppointmentsAttendedByDay = x.NumberAppointmentsAttendedByDay,
-                    EnterpriseDescription = x.EnterpriseDescription,
-                    ScheduleHourId = x.ScheduleHourId,
-                    ScheduleHourValue = x.ScheduleHour != null ? x.ScheduleHour.Value : 0,
-                    ScheduleHourCloseId = x.ScheduleHourCloseId,
-                    ScheduleHourCloseValue = x.ScheduleHourClose != null ? x.ScheduleHourClose.Value : 0,
-                    CreationTime = x.CreationTime,
-                    CreatorUserId = x.CreatorUserId,
-                    LastModificationTime = x.LastModificationTime,
-                    LastModifierUserId = x.LastModifierUserId,
-                    DeletionTime = x.DeletionTime,
-                    DeleterUserId = x.DeleterUserId,
-
-                }).OrderByDescending(y => y.Id).ToList();
-
-            }
+            }).OrderByDescending(y => y.Id).ToList();
 
             return result;
         }
