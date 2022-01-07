@@ -30,6 +30,13 @@ namespace JS.Base.WS.API.Global
         }
 
 
+        public static class InventoryStatuses
+        {
+            public const string Open = "Open";
+            public const string Closed = "Closed";
+        }
+
+
         public static class Genders
         {
             public const string Maculino = "Maculino";

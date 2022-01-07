@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace JS.Base.WS.API.Models.Domain.Product
+namespace JS.Base.WS.API.Models.Domain
 {
     public class Product: Audit
     {

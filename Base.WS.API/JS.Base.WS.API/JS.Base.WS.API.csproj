@@ -291,8 +291,15 @@
     <Compile Include="Migrations\202201032024186_product.Designer.cs">
       <DependentUpon>202201032024186_product.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202201070450553_Create inventory.cs" />
+    <Compile Include="Migrations\202201070450553_Create inventory.Designer.cs">
+      <DependentUpon>202201070450553_Create inventory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Authorization\UserType.cs" />
     <Compile Include="Models\Currency.cs" />
+    <Compile Include="Models\Domain\Inventory\Inventory.cs" />
+    <Compile Include="Models\Domain\Inventory\InventoryDetail.cs" />
+    <Compile Include="Models\Domain\Inventory\InventoryStatus.cs" />
     <Compile Include="Models\Domain\PaymentMethod.cs" />
     <Compile Include="Models\Domain\Product\Product.cs" />
     <Compile Include="Models\Domain\ScheduleHour.cs" />
@@ -368,8 +375,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Properties\PublishProfiles\JS.BaseWS.API.pubxml" />
-    <None Include="Properties\PublishProfiles\MarketPlace.WS.API.pubxml" />
+    <None Include="Properties\PublishProfiles\JS.Base.WS.API.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -440,6 +446,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202201032024186_product.resx">
       <DependentUpon>202201032024186_product.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201070450553_Create inventory.resx">
+      <DependentUpon>202201070450553_Create inventory.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

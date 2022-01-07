@@ -31,6 +31,11 @@ namespace JS.Base.WS.API.Models.Permission
         public bool CanEditEnterprise { get; set; }
         public bool CanDeleteEnterprise { get; set; }
 
+        //Enterprise
+        //public bool CanCreateEnterprise { get; set; }
+        //public bool CanEditEnterprise { get; set; }
+        //public bool CanDeleteEnterprise { get; set; }
+
 
         [ForeignKey("PersonTypeId")]
         public virtual PersonType PersonType { get; set; }

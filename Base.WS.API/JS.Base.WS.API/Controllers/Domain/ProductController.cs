@@ -2,7 +2,7 @@
 using JS.Base.WS.API.DBContext;
 using JS.Base.WS.API.DTO.Domain;
 using JS.Base.WS.API.Helpers;
-using JS.Base.WS.API.Models.Domain.Product;
+using JS.Base.WS.API.Models.Domain;
 using System;
 using System.Collections.Generic;
 using System.Globalization;

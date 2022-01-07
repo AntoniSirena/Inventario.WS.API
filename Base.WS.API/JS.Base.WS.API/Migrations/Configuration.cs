@@ -3,6 +3,7 @@ namespace JS.Base.WS.API.Migrations
     using JS.Base.WS.API.Models;
     using JS.Base.WS.API.Models.Authorization;
     using JS.Base.WS.API.Models.Domain;
+    using JS.Base.WS.API.Models.Domain.Inventory;
     using JS.Base.WS.API.Models.PersonProfile;
     using JS.Base.WS.API.Models.Publicity;
     using System;
@@ -84,6 +85,13 @@ namespace JS.Base.WS.API.Migrations
                 new PaymentMethod { ShortName = "Transference", Description = "Transferencia", ShowToCustomer = true, IsActive = true, CreatorUserId = userId, CreationTime = DateTime.Now },
                 new PaymentMethod { ShortName = "Card", Description = "Tarjeta", ShowToCustomer = false, IsActive = true, CreatorUserId = userId, CreationTime = DateTime.Now }
                 );
+
+
+            context.InventoryStatuses.AddOrUpdate(
+                 x => x.ShortName,
+                 new InventoryStatus { ShortName = "Open", Description = "Abierto", Colour = "btn btn-success" },
+                 new InventoryStatus { ShortName = "Closed", Description = "Cerrado", Colour = "btn btn-primary" }
+                 );
 
 
             //Schedule Hours
