@@ -17,6 +17,8 @@ namespace JS.Base.WS.API.Models.Domain.Inventory
         public string Description { get; set; }
         public DateTime? OpenDate { get; set; }
         public DateTime? ClosedDate { get; set; }
+        public string OpenDateFormatted { get; set; }
+        public string ClosedDateFormatted { get; set; }
 
 
         [ForeignKey("StatusId")]

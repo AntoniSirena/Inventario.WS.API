@@ -94,22 +94,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/30/2021 20:08:01</publishTime>
     </File>
     <File Include="bin/JS.AlertService.dll">
-      <publishTime>01/05/2022 16:17:59</publishTime>
+      <publishTime>01/10/2022 11:50:53</publishTime>
     </File>
     <File Include="bin/JS.AlertService.pdb">
-      <publishTime>01/05/2022 16:17:59</publishTime>
+      <publishTime>01/10/2022 11:50:53</publishTime>
     </File>
     <File Include="bin/JS.Base.WS.API.dll">
-      <publishTime>01/05/2022 16:18:03</publishTime>
+      <publishTime>01/10/2022 11:50:57</publishTime>
     </File>
     <File Include="bin/JS.Base.WS.API.pdb">
-      <publishTime>01/05/2022 16:18:03</publishTime>
+      <publishTime>01/10/2022 11:50:57</publishTime>
     </File>
     <File Include="bin/JS.Utilities.dll">
-      <publishTime>01/05/2022 13:35:00</publishTime>
+      <publishTime>01/10/2022 11:50:52</publishTime>
     </File>
     <File Include="bin/JS.Utilities.pdb">
-      <publishTime>01/05/2022 13:35:00</publishTime>
+      <publishTime>01/10/2022 11:50:52</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>12/30/2021 20:07:59</publishTime>
@@ -445,7 +445,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/30/2021 20:07:57</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>01/05/2022 13:35:05</publishTime>
+      <publishTime>01/09/2022 17:18:33</publishTime>
     </File>
   </ItemGroup>
 </Project>

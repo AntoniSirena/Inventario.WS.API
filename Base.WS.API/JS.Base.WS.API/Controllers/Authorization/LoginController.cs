@@ -351,6 +351,7 @@ namespace JS.Base.WS.API.Controllers.Authorization
                         RoleShortName = userRole.Role.ShortName,
                         RoleParent = userRole.Role.Parent,
                         IsVisitorUser = currentUser.IsVisitorUser,
+                        CanDoInventory = currentUser.CanDoInventory,
 
                         //Crud
                         CanEdit = userRole.Role.CanEdit,

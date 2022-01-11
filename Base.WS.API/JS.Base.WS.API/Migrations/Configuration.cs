@@ -89,7 +89,7 @@ namespace JS.Base.WS.API.Migrations
 
             context.InventoryStatuses.AddOrUpdate(
                  x => x.ShortName,
-                 new InventoryStatus { ShortName = "Open", Description = "Abierto", Colour = "btn btn-success" },
+                 new InventoryStatus { ShortName = "Open", Description = "Aperturado", Colour = "btn btn-success" },
                  new InventoryStatus { ShortName = "Closed", Description = "Cerrado", Colour = "btn btn-primary" }
                  );
 

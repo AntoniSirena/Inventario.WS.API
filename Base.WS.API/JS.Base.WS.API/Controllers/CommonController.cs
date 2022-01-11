@@ -111,7 +111,7 @@ namespace JS.Base.WS.API.Controllers
                     file = JS_File.ResizeImage(img, width, height);
                 }
 
-                JS_File.DownloadFileImg(file);
+                JS_File.DownloadFile(file);
             }
 
             return Ok();

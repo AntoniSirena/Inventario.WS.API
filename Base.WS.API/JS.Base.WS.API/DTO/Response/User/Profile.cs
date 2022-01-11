@@ -27,6 +27,8 @@ namespace JS.Base.WS.API.DTO.Response.User
         public string RoleShortName { get; set; }
         public string RoleParent { get; set; }
         public bool IsVisitorUser { get; set; }
+        public bool CanDoInventory { get; set; }
+
 
         public bool EnableShoppingCart { get; set; }
 

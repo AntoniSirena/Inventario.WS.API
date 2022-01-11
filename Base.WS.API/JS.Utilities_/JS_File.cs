@@ -32,7 +32,7 @@ namespace JS.Utilities
             return result;
         }
 
-        public static void DownloadFileImg(byte[] file, string name = "")
+        public static void DownloadFile(byte[] file, string name = "")
         {
             HttpContext.Current.Response.Clear();
             HttpContext.Current.Response.ContentType = "aplication/octet-stream";

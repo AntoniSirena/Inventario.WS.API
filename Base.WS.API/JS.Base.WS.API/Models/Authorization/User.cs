@@ -30,6 +30,8 @@ namespace JS.Base.WS.API.Models.Authorization
         public bool IsVisitorUser { get; set; }
         public string PhoneNumber { get; set; }
         public int UserTypeId { get; set; }
+        public bool CanDoInventory { get; set; }
+
 
         [ForeignKey("StatusId")]
         public virtual UserStatus UserStatus { get; set; }

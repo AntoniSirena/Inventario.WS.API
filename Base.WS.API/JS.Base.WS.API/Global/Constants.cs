@@ -198,7 +198,10 @@ namespace JS.Base.WS.API.Global
             
             public static string UserAvataDefault { get { return ConfigurationParameterService.GetParameter("UserAvataDefault") ?? ""; } }
 
-            public static string UserAvatarFileDirectory { get { return ConfigurationParameterService.GetParameter("UserAvatarFileDirectory") ?? ""; } }         
+            public static string UserAvatarFileDirectory { get { return ConfigurationParameterService.GetParameter("UserAvatarFileDirectory") ?? ""; } }
+
+            public static string AllowShowAll_Inventory_ByRole { get { return ConfigurationParameterService.GetParameter("AllowShowAll_Inventory_ByRole") ?? "Admin"; } }
+
 
         }
 
