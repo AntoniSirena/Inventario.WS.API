@@ -20,6 +20,8 @@ namespace JS.Base.WS.API.Models.Permission
         public bool Enabled { get; set; }
         public string Code { get; set; }
         public int? PersonTypeId { get; set; }
+        public bool CanShow { get; set; }
+
 
         //Crud
         public bool CanCreate { get; set; }

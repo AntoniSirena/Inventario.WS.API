@@ -3,6 +3,7 @@ using JS.Base.WS.API.DBContext;
 using JS.Base.WS.API.DTO.Domain;
 using JS.Base.WS.API.Helpers;
 using JS.Base.WS.API.Models.Domain.Inventory;
+using JS.Base.WS.API.Services.Domain;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -149,6 +150,7 @@ namespace JS.Base.WS.API.Controllers.Domain
                 Price = y.CurrentPrice,
                 Quantity = y.Quantity,
                 InventoryId = inventoryId,
+                UserName = y.User.UserName,
 
             }).OrderByDescending(x => x.InventoryDetailId).ToList();
 
@@ -273,6 +275,7 @@ namespace JS.Base.WS.API.Controllers.Domain
                 CurrentCost = request.Cost,
                 CurrentPrice = request.Price,
                 Quantity = request.Quantity,
+                UserId = currentUserId,
 
                 CreationTime = DateTime.Now,
                 CreatorUserId = currentUserId,
@@ -362,6 +365,18 @@ namespace JS.Base.WS.API.Controllers.Domain
         }
 
 
+
+        [HttpGet]
+        [Route("GenerateInventoryExcel")]
+        [AllowAnonymous]
+        public IHttpActionResult GenerateInventoryExcel(long id)
+        {
+            var inventoryService = new InventoryServices();
+
+            inventoryService.GenerateInventoryExcel(id);
+
+            return Ok();
+        }
 
         private string RemoveAccents(string text)
         {

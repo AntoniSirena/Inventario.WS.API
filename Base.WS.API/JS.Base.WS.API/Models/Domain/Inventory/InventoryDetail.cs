@@ -1,4 +1,5 @@
 ﻿using JS.Base.WS.API.Base;
+using JS.Base.WS.API.Models.Authorization;
 using JS.Base.WS.API.Models.Domain;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -12,6 +13,7 @@ namespace JS.Base.WS.API.Models.Domain.Inventory
         [Key]
         public long Id { get; set; }
         public long InventoryId { get; set; }
+        public long UserId { get; set; }
         public long ProductId { get; set; }
         public decimal OldCost { get; set; }
         public decimal OldPrice { get; set; }
@@ -22,6 +24,9 @@ namespace JS.Base.WS.API.Models.Domain.Inventory
 
         [ForeignKey("InventoryId")]
         public virtual Inventory Inventory { get; set; }
+
+        [ForeignKey("UserId")]
+        public virtual User User { get; set; }
 
         [ForeignKey("ProductId")]
         public virtual Product Product  { get; set; }

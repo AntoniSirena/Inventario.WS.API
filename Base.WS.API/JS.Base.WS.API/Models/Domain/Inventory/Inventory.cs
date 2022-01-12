@@ -1,6 +1,7 @@
 ﻿using JS.Base.WS.API.Base;
 using JS.Base.WS.API.Models.Authorization;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -26,5 +27,7 @@ namespace JS.Base.WS.API.Models.Domain.Inventory
 
         [ForeignKey("UserId")]
         public virtual User User { get; set; }
+
+        public virtual ICollection<InventoryDetail> InventoryDetails { get; set; }
     }
 }

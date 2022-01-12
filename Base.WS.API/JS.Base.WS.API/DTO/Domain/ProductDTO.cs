@@ -18,6 +18,8 @@ namespace JS.Base.WS.API.DTO.Domain
         public long InventoryId { get; set; }
         public long InventoryDetailId { get; set; }
         public decimal Quantity { get; set; }
+        public string UserName { get; set; }
+
     }
 
 }

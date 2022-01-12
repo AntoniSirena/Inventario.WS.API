@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.Globalization;
 using System.IO;
 using System.Web;
 using static System.Net.Mime.MediaTypeNames;
@@ -32,11 +33,22 @@ namespace JS.Utilities
             return result;
         }
 
-        public static void DownloadFile(byte[] file, string name = "")
+        public static void DownloadFile(byte[] file, string contentType, string name = "", string extention = "")
+        {
+            HttpContext.Current.Response.Clear();
+            HttpContext.Current.Response.ContentType = contentType;
+            HttpContext.Current.Response.AddHeader("Content-Disposition", new System.Net.Mime.ContentDisposition("attachment") { FileName = name + "." + extention }.ToString());
+            HttpContext.Current.Response.Flush();
+            HttpContext.Current.Response.BinaryWrite(file);
+            HttpContext.Current.Response.End();
+        }
+
+
+        public static void DownloadFileImg(byte[] file, string name = "Img")
         {
             HttpContext.Current.Response.Clear();
             HttpContext.Current.Response.ContentType = "aplication/octet-stream";
-            HttpContext.Current.Response.AddHeader("Content-Disposition", "attachment; filename=" + name);
+            HttpContext.Current.Response.AddHeader("Content-Disposition", new System.Net.Mime.ContentDisposition("attachment") { FileName = name }.ToString());
             HttpContext.Current.Response.Flush();
             HttpContext.Current.Response.BinaryWrite(file);
             HttpContext.Current.Response.End();
