@@ -70,6 +70,11 @@ namespace JS.Base.WS.API.DBContext
         public virtual DbSet<Inventory> Inventories { get; set; }
         public virtual DbSet<InventoryDetail> InventoryDetails { get; set; }
         public virtual DbSet<InventoryStatus> InventoryStatuses { get; set; }
+        public virtual DbSet<InventoryConfiguration> InventoryConfigurations { get; set; }
+        public virtual DbSet<InventorySection> InventorySections { get; set; }
+        public virtual DbSet<InventoryTariff> InventoryTariffs { get; set; }
+
+
 
 
     }

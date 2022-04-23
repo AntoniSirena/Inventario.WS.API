@@ -290,6 +290,8 @@ namespace JS.Base.WS.API.Controllers.Authorization
 
                 var userRole = db.UserRoles.Where(x => x.UserId == currentUser.Id && x.IsActive == true).FirstOrDefault();
 
+                var inventoryConfiguration = db.InventoryConfigurations.Where(x => x.IsActive == true).FirstOrDefault();
+
                 //Permissions
                 if (userRole != null)
                 {
@@ -351,7 +353,11 @@ namespace JS.Base.WS.API.Controllers.Authorization
                         RoleShortName = userRole.Role.ShortName,
                         RoleParent = userRole.Role.Parent,
                         IsVisitorUser = currentUser.IsVisitorUser,
+
+                        //Inventory
                         CanDoInventory = currentUser.CanDoInventory,
+                        ShowCost = inventoryConfiguration.ShowCost,
+                        ShowPrice = inventoryConfiguration.ShowPrice,
 
                         //Crud
                         CanEdit = userRole.Role.CanEdit,
@@ -621,6 +627,7 @@ namespace JS.Base.WS.API.Controllers.Authorization
             public string SecurityCode { get; set; }
             public string Token2AF { get; set; }
             public bool RefreshToken { get; set; }
+            public string Channel { get; set; }
         }
     }
 }

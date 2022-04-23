@@ -1,5 +1,6 @@
 ﻿using JS.Base.WS.API.Base;
 using JS.Base.WS.API.DBContext;
+using JS.Base.WS.API.DTO.Common;
 using JS.Base.WS.API.DTO.Domain;
 using JS.Base.WS.API.Helpers;
 using JS.Base.WS.API.Models.Domain;
@@ -22,6 +23,7 @@ namespace JS.Base.WS.API.Controllers.Domain
 
         private MyDBcontext db;
         private Response response;
+        private PaginationDTO pagination;
 
         private long currentUserId = CurrentUser.GetId();
 
@@ -29,6 +31,7 @@ namespace JS.Base.WS.API.Controllers.Domain
         {
             db = new MyDBcontext();
             response = new Response();
+            pagination = new PaginationDTO();
         }
 
 
@@ -48,6 +51,56 @@ namespace JS.Base.WS.API.Controllers.Domain
             }).OrderByDescending(x => x.Id).ToList();
 
             return result;
+        }
+
+        [HttpGet]
+        [Route("GetAllPaginated")]
+        public IHttpActionResult GetAllPaginated(int pageNumber = 1, int pageRow = 10, string filter = "")
+        {
+            var result = new List<ProductDTO>();
+
+            if (pageNumber == 1)
+            {
+                result = db.Products.Where(x => x.IsActive == true).Select(y => new ProductDTO()
+                {
+                    Id = y.Id,
+                    Description = y.Description,
+                    ExternalCode = y.ExternalCode,
+                    BarCode = y.BarCode,
+                    Cost = y.Cost,
+                    Price = y.Price,
+
+                }).OrderByDescending(x => x.Id).ToList();
+
+
+                pagination.Records = result.Skip((pageNumber - 1) * pageRow).Take(pageRow);
+                pagination.Pagination = new Pagination()
+                {
+                    PageNumber = pageNumber,
+                    PageRow = pageRow,
+                    TotalRecord = result.Count(),
+                    TotalPage = (int)Math.Ceiling(result.Count() / (double)pageRow),
+                };
+
+                response.Data = pagination;
+            }
+            else
+            {
+                result = db.Products.Where(x => x.IsActive == true).Select(y => new ProductDTO()
+                {
+                    Id = y.Id,
+                    Description = y.Description,
+                    ExternalCode = y.ExternalCode,
+                    BarCode = y.BarCode,
+                    Cost = y.Cost,
+                    Price = y.Price,
+
+                }).OrderByDescending(x => x.Id).Skip((pageNumber - 1) * pageRow).Take(pageRow).ToList();
+
+                response.Data = result;
+            }
+
+            return Ok(response);
         }
 
 

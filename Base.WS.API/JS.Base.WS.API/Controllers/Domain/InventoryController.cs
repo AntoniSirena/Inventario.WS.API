@@ -152,6 +152,11 @@ namespace JS.Base.WS.API.Controllers.Domain
                 InventoryId = inventoryId,
                 UserName = y.User.UserName,
 
+                SectionId = y.SectionId,
+                SectionDescription = y.Section.Description,
+                TariffId = y.TariffId,
+                TariffDescription = y.Tariff.Description,
+
             }).OrderByDescending(x => x.InventoryDetailId).ToList();
 
             response.Data = result;
@@ -254,6 +259,8 @@ namespace JS.Base.WS.API.Controllers.Domain
                 currentInventoryDetail.CurrentCost = request.Cost;
                 currentInventoryDetail.CurrentPrice = request.Price;
                 currentInventoryDetail.Quantity = request.Quantity;
+                currentInventoryDetail.SectionId = request.SectionId;
+                currentInventoryDetail.TariffId = request.TariffId;
 
                 currentInventoryDetail.LastModificationTime = DateTime.Now;
                 currentInventoryDetail.LastModifierUserId = currentUserId;
@@ -276,6 +283,8 @@ namespace JS.Base.WS.API.Controllers.Domain
                 CurrentPrice = request.Price,
                 Quantity = request.Quantity,
                 UserId = currentUserId,
+                SectionId = request.SectionId,
+                TariffId = request.TariffId,
 
                 CreationTime = DateTime.Now,
                 CreatorUserId = currentUserId,
@@ -377,6 +386,39 @@ namespace JS.Base.WS.API.Controllers.Domain
 
             return Ok();
         }
+
+
+        [HttpGet]
+        [Route("GetSection")]
+        public IEnumerable<SectionDTO> GetSection()
+        {
+            var result = db.InventorySections.Where(x => x.IsActive == true).Select(y => new SectionDTO()
+            {
+                Id = y.Id,
+                ShortName = y.ShortName,
+                Description = y.Description,
+
+            }).ToList();
+
+            return result;
+        }
+
+
+        [HttpGet]
+        [Route("GetTariff")]
+        public IEnumerable<TariffDTO> GetTariff()
+        {
+            var result = db.InventoryTariffs.Where(x => x.IsActive == true).Select(y => new TariffDTO()
+            {
+                Id = y.Id,
+                ShortName = y.ShortName,
+                Description = y.Description,
+
+            }).ToList();
+
+            return result;
+        }
+
 
         private string RemoveAccents(string text)
         {

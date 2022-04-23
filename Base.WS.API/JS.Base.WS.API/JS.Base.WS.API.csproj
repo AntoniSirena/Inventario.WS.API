@@ -275,11 +275,14 @@
     <Compile Include="DTO\Common\CurrentUserInfoDto.cs" />
     <Compile Include="DTO\Common\DocumentTypeDto.cs" />
     <Compile Include="DTO\Common\GenderDto.cs" />
+    <Compile Include="DTO\Common\PaginationDTO.cs" />
     <Compile Include="DTO\Common\RoleDto.cs" />
     <Compile Include="DTO\Common\UserDto.cs" />
     <Compile Include="DTO\Common\UserTypeDTO.cs" />
     <Compile Include="DTO\Domain\InventoryDTO.cs" />
     <Compile Include="DTO\Domain\ProductDTO.cs" />
+    <Compile Include="DTO\Domain\SectionDTO.cs" />
+    <Compile Include="DTO\Domain\TariffDTO.cs" />
     <Compile Include="DTO\Request\UploadFile.cs" />
     <Compile Include="DTO\Request\UserRequest.cs" />
     <Compile Include="DTO\Request\UserRequestExternal.cs" />
@@ -308,8 +311,11 @@
     <Compile Include="Models\Authorization\UserType.cs" />
     <Compile Include="Models\Currency.cs" />
     <Compile Include="Models\Domain\Inventory\Inventory.cs" />
+    <Compile Include="Models\Domain\Inventory\InventoryConfiguration.cs" />
     <Compile Include="Models\Domain\Inventory\InventoryDetail.cs" />
+    <Compile Include="Models\Domain\Inventory\InventorySection.cs" />
     <Compile Include="Models\Domain\Inventory\InventoryStatus.cs" />
+    <Compile Include="Models\Domain\Inventory\InventoryTariff.cs" />
     <Compile Include="Models\Domain\PaymentMethod.cs" />
     <Compile Include="Models\Domain\Product\Product.cs" />
     <Compile Include="Models\Domain\ScheduleHour.cs" />

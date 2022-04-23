@@ -20,6 +20,11 @@ namespace JS.Base.WS.API.DTO.Domain
         public decimal Quantity { get; set; }
         public string UserName { get; set; }
 
+        public int? SectionId { get; set; }
+        public int? TariffId { get; set; }
+        public string SectionDescription { get; set; }
+        public string TariffDescription { get; set; }
+
     }
 
 }
