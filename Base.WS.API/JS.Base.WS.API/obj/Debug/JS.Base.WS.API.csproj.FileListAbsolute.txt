@@ -971,3 +971,5 @@ C:\Users\TEMP\Documents\Clients\Inventario\Inventario.WS.API\Base.WS.API\JS.Base
 C:\Users\TEMP\Documents\Clients\Inventario\Inventario.WS.API\Base.WS.API\JS.Base.WS.API\obj\Debug\JS.Base.WS.API.csproj.CopyComplete
 C:\Users\TEMP\Documents\Clients\Inventario\Inventario.WS.API\Base.WS.API\JS.Base.WS.API\obj\Debug\JS.Base.WS.API.dll
 C:\Users\TEMP\Documents\Clients\Inventario\Inventario.WS.API\Base.WS.API\JS.Base.WS.API\obj\Debug\JS.Base.WS.API.pdb
+C:\Users\TEMP\Documents\Clients\Inventario\Inventario.WS.API\Base.WS.API\JS.Base.WS.API\bin\JS.AlertService.dll.config
+C:\Users\TEMP\Documents\Clients\Inventario\Inventario.WS.API\Base.WS.API\JS.Base.WS.API\bin\JS.Utilities.dll.config

@@ -47,6 +47,8 @@ namespace JS.Base.WS.API.Controllers.Domain
                 BarCode = y.BarCode,
                 Cost = y.Cost,
                 Price = y.Price,
+                Reference = y.Reference,
+                Existence = y.Existence,
 
             }).OrderByDescending(x => x.Id).ToList();
 
@@ -54,10 +56,48 @@ namespace JS.Base.WS.API.Controllers.Domain
         }
 
         [HttpGet]
-        [Route("GetAllPaginated")]
-        public IHttpActionResult GetAllPaginated(int pageNumber = 1, int pageRow = 10, string filter = "")
+        [Route("GetProducts_Paginated")]
+        public IHttpActionResult GetProducts_Paginated(int pageNumber = 1, string filter = "")
         {
             var result = new List<ProductDTO>();
+
+            int pageRow = 10;
+
+            if (!string.IsNullOrEmpty(filter))
+            {
+                filter = RemoveAccents(filter).ToLower();
+
+                result = db.Products.Where(x => x.IsActive == true && (
+                x.ExternalCode.Contains(filter) ||
+                x.FormattedDescription.Contains(filter) ||
+                x.BarCode.Contains(filter) ||
+                x.Reference.Contains(filter)
+                )).Select(y => new ProductDTO()
+                {
+                    Id = y.Id,
+                    Description = y.Description,
+                    ExternalCode = y.ExternalCode,
+                    BarCode = y.BarCode,
+                    Cost = y.Cost,
+                    Price = y.Price,
+                    Reference = y.Reference,
+                    Existence = y.Existence,
+
+                }).OrderByDescending(x => x.Id).ToList();
+
+                pagination.Records = result.Skip((pageNumber - 1) * pageRow).Take(pageRow);
+                pagination.Pagination = new Pagination()
+                {
+                    PageNumber = pageNumber,
+                    PageRow = pageRow,
+                    TotalRecord = result.Count(),
+                    TotalPage = (int)Math.Ceiling(result.Count() / (double)pageRow),
+                };
+
+                response.Data = pagination;
+
+                return Ok(response);
+            }
 
             if (pageNumber == 1)
             {
@@ -69,9 +109,10 @@ namespace JS.Base.WS.API.Controllers.Domain
                     BarCode = y.BarCode,
                     Cost = y.Cost,
                     Price = y.Price,
+                    Reference = y.Reference,
+                    Existence = y.Existence,
 
                 }).OrderByDescending(x => x.Id).ToList();
-
 
                 pagination.Records = result.Skip((pageNumber - 1) * pageRow).Take(pageRow);
                 pagination.Pagination = new Pagination()
@@ -84,7 +125,8 @@ namespace JS.Base.WS.API.Controllers.Domain
 
                 response.Data = pagination;
             }
-            else
+
+            if(pageNumber > 1)
             {
                 result = db.Products.Where(x => x.IsActive == true).Select(y => new ProductDTO()
                 {
@@ -94,6 +136,8 @@ namespace JS.Base.WS.API.Controllers.Domain
                     BarCode = y.BarCode,
                     Cost = y.Cost,
                     Price = y.Price,
+                    Reference = y.Reference,
+                    Existence = y.Existence,
 
                 }).OrderByDescending(x => x.Id).Skip((pageNumber - 1) * pageRow).Take(pageRow).ToList();
 
@@ -129,6 +173,8 @@ namespace JS.Base.WS.API.Controllers.Domain
                 product.FormattedDescription = RemoveAccents(item.Description).ToLower();
                 product.Cost = item.Cost;
                 product.Price = item.Price;
+                product.Reference = item.Reference;
+                product.Existence = item.Existence;
                 product.CreationTime = DateTime.Now;
                 product.CreatorUserId = currentUserId;
                 product.IsActive = true;
@@ -192,6 +238,8 @@ namespace JS.Base.WS.API.Controllers.Domain
             result.BarCode = request.BarCode;
             result.Cost = request.Cost;
             result.Price = request.Price;
+            result.Reference = request.Reference;
+            result.Existence = request.Existence;
             result.LastModificationTime = DateTime.Now;
             result.LastModifierUserId = currentUserId;
 

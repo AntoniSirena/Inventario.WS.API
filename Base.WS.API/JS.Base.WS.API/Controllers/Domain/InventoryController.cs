@@ -1,6 +1,8 @@
 ﻿using JS.Base.WS.API.Base;
 using JS.Base.WS.API.DBContext;
+using JS.Base.WS.API.DTO.Common;
 using JS.Base.WS.API.DTO.Domain;
+using JS.Base.WS.API.Global;
 using JS.Base.WS.API.Helpers;
 using JS.Base.WS.API.Models.Domain.Inventory;
 using JS.Base.WS.API.Services.Domain;
@@ -23,6 +25,7 @@ namespace JS.Base.WS.API.Controllers.Domain
 
         private MyDBcontext db;
         private Response response;
+        private PaginationDTO pagination;
 
         private long currentUserId = CurrentUser.GetId();
 
@@ -30,6 +33,7 @@ namespace JS.Base.WS.API.Controllers.Domain
         {
             db = new MyDBcontext();
             response = new Response();
+            pagination = new PaginationDTO();
         }
 
 
@@ -76,6 +80,16 @@ namespace JS.Base.WS.API.Controllers.Domain
                 }).OrderByDescending(x => x.Id).ToList();
             }
 
+            foreach (var item in result)
+            {
+                var details = db.InventoryDetails.Where(x => x.InventoryId == item.Id).ToList();
+
+                if (details.Count > 0)
+                {
+                    item.TotalAmount = details.Sum(y => y.TotalAmount);
+                }
+            }
+
 
             return result;
         }
@@ -108,7 +122,8 @@ namespace JS.Base.WS.API.Controllers.Domain
 
             var products = db.Products.Where(x => x.ExternalCode.Contains(input)
                                           || x.BarCode.Contains(input)
-                                          || x.FormattedDescription.Contains(input)).Select(y => new ProductDTO()
+                                          || x.FormattedDescription.Contains(input)
+                                          || x.Reference.Contains(input)).Select(y => new ProductDTO()
                                           {
                                               Id = y.Id,
                                               Description = y.Description,
@@ -116,7 +131,8 @@ namespace JS.Base.WS.API.Controllers.Domain
                                               BarCode = y.BarCode,
                                               Cost = y.Cost,
                                               Price = y.Price,
-
+                                              Reference = y.Reference,
+                                              Existence = y.Existence,
                                           }).ToList();
 
             if (products.Count() == 0)
@@ -148,7 +164,11 @@ namespace JS.Base.WS.API.Controllers.Domain
                 OldPrice = y.OldPrice,
                 Cost = y.CurrentCost,
                 Price = y.CurrentPrice,
+                Reference = y.Product.Reference,
+                Existence = y.Product.Existence,
                 Quantity = y.Quantity,
+                TotalAmount = y.TotalAmount,
+                Difference = y.Difference,
                 InventoryId = inventoryId,
                 UserName = y.User.UserName,
 
@@ -163,6 +183,128 @@ namespace JS.Base.WS.API.Controllers.Domain
 
             return Ok(response);
         }
+
+
+        [HttpGet]
+        [Route("GetInventoryDetails_Paginated")]
+        public IHttpActionResult GetAllPaginated(long inventoryId, int pageNumber = 1, string filter = "")
+        {
+
+            var result = new List<ProductDTO>();
+
+            int pageRow = Convert.ToInt32(Constants.ConfigurationParameter.TotalItemsPerPage_InventoryDetails);
+
+            if (!string.IsNullOrEmpty(filter))
+            {
+                filter = RemoveAccents(filter).ToLower();
+
+                result = db.InventoryDetails.Where(x => x.InventoryId == inventoryId && (
+                                  x.Product.ExternalCode.Contains(filter)
+                                  || x.Product.BarCode.Contains(filter)
+                                  || x.Product.FormattedDescription.Contains(filter)
+                                  || x.Product.Reference.Contains(filter)
+                )).Select(y => new ProductDTO()
+                {
+                    Id = y.Product.Id,
+                    InventoryDetailId = y.Id,
+                    Description = y.Product.Description,
+                    ExternalCode = y.Product.ExternalCode,
+                    BarCode = y.Product.BarCode,
+                    OldCost = y.OldCost,
+                    OldPrice = y.OldPrice,
+                    Cost = y.CurrentCost,
+                    Price = y.CurrentPrice,
+                    Quantity = y.Quantity,
+                    TotalAmount = y.TotalAmount,
+                    InventoryId = inventoryId,
+                    UserName = y.User.UserName,
+                    SectionId = y.SectionId,
+                    SectionDescription = y.Section.Description,
+                    TariffId = y.TariffId,
+                    TariffDescription = y.Tariff.Description,
+
+                }).OrderByDescending(x => x.InventoryDetailId).ToList();
+
+                pagination.Records = result.Skip((pageNumber - 1) * pageRow).Take(pageRow);
+                pagination.Pagination = new Pagination()
+                {
+                    PageNumber = pageNumber,
+                    PageRow = pageRow,
+                    TotalRecord = result.Count(),
+                    TotalPage = (int)Math.Ceiling(result.Count() / (double)pageRow),
+                };
+
+                response.Data = pagination;
+
+                return Ok(response);
+            }
+
+            if (pageNumber == 1)
+            {
+                result = db.InventoryDetails.Where(x => x.InventoryId == inventoryId).Select(y => new ProductDTO()
+                {
+                    Id = y.Product.Id,
+                    InventoryDetailId = y.Id,
+                    Description = y.Product.Description,
+                    ExternalCode = y.Product.ExternalCode,
+                    BarCode = y.Product.BarCode,
+                    OldCost = y.OldCost,
+                    OldPrice = y.OldPrice,
+                    Cost = y.CurrentCost,
+                    Price = y.CurrentPrice,
+                    Quantity = y.Quantity,
+                    TotalAmount = y.TotalAmount,
+                    InventoryId = inventoryId,
+                    UserName = y.User.UserName,
+                    SectionId = y.SectionId,
+                    SectionDescription = y.Section.Description,
+                    TariffId = y.TariffId,
+                    TariffDescription = y.Tariff.Description,
+
+                }).OrderByDescending(x => x.InventoryDetailId).ToList();
+
+                pagination.Records = result.Skip((pageNumber - 1) * pageRow).Take(pageRow);
+                pagination.Pagination = new Pagination()
+                {
+                    PageNumber = pageNumber,
+                    PageRow = pageRow,
+                    TotalRecord = result.Count(),
+                    TotalPage = (int)Math.Ceiling(result.Count() / (double)pageRow),
+                };
+
+                response.Data = pagination;
+            }
+
+            if (pageNumber > 1)
+            {
+                result = db.InventoryDetails.Where(x => x.InventoryId == inventoryId).Select(y => new ProductDTO()
+                {
+                    Id = y.Product.Id,
+                    InventoryDetailId = y.Id,
+                    Description = y.Product.Description,
+                    ExternalCode = y.Product.ExternalCode,
+                    BarCode = y.Product.BarCode,
+                    OldCost = y.OldCost,
+                    OldPrice = y.OldPrice,
+                    Cost = y.CurrentCost,
+                    Price = y.CurrentPrice,
+                    Quantity = y.Quantity,
+                    TotalAmount = y.TotalAmount,
+                    InventoryId = inventoryId,
+                    UserName = y.User.UserName,
+                    SectionId = y.SectionId,
+                    SectionDescription = y.Section.Description,
+                    TariffId = y.TariffId,
+                    TariffDescription = y.Tariff.Description,
+
+                }).OrderByDescending(x => x.InventoryDetailId).Skip((pageNumber - 1) * pageRow).Take(pageRow).ToList();
+
+                response.Data = result;
+            }
+
+            return Ok(response);
+        }
+
 
 
         [HttpPost]
@@ -242,6 +384,9 @@ namespace JS.Base.WS.API.Controllers.Domain
         {
             var currentItem = db.Products.Where(x => x.Id == request.Id).FirstOrDefault();
 
+            var currentInventory = db.Inventories.Where(x => x.Id == request.InventoryId).FirstOrDefault();
+            decimal totalAmountInventory = currentInventory.TotalAmount;
+
             if (currentItem == null)
             {
                 response.Code = "404";
@@ -250,53 +395,59 @@ namespace JS.Base.WS.API.Controllers.Domain
                 return Ok(response);
             }
 
-            var currentInventoryDetail = db.InventoryDetails.Where(x => x.InventoryId == request.InventoryId && x.ProductId == request.Id).FirstOrDefault();
-
-            if (currentInventoryDetail != null)
+            if (request.Origin == "EDIT")
             {
-                currentInventoryDetail.OldCost = currentItem.Cost;
-                currentInventoryDetail.OldPrice = currentItem.Price;
-                currentInventoryDetail.CurrentCost = request.Cost;
-                currentInventoryDetail.CurrentPrice = request.Price;
-                currentInventoryDetail.Quantity = request.Quantity;
-                currentInventoryDetail.SectionId = request.SectionId;
-                currentInventoryDetail.TariffId = request.TariffId;
+                var currentInventoryDetail = db.InventoryDetails.Where(x => x.Id == request.InventoryDetailId && x.ProductId == request.Id).FirstOrDefault();
 
-                currentInventoryDetail.LastModificationTime = DateTime.Now;
-                currentInventoryDetail.LastModifierUserId = currentUserId;
+                if (currentInventoryDetail != null)
+                {
+                    currentInventoryDetail.OldCost = currentItem.Cost;
+                    currentInventoryDetail.OldPrice = currentItem.Price;
+                    currentInventoryDetail.CurrentCost = request.Cost;
+                    currentInventoryDetail.CurrentPrice = request.Price;
+                    currentInventoryDetail.Quantity = request.Quantity;
+                    currentInventoryDetail.SectionId = request.SectionId;
+                    currentInventoryDetail.TariffId = request.TariffId;
+                    currentInventoryDetail.Difference = (request.Quantity - currentItem.Existence);
+                    currentInventoryDetail.TotalAmount = (request.Quantity * request.Cost);
 
-                db.SaveChanges();
+                    currentInventoryDetail.LastModificationTime = DateTime.Now;
+                    currentInventoryDetail.LastModifierUserId = currentUserId;
 
-                response.Message = "Item guardado con éxito";
-
-                return Ok(response);
+                    db.SaveChanges();
+                }
             }
 
-
-            var inventoryDetail = new InventoryDetail()
+            if (request.Origin == "ADD")
             {
-                InventoryId = request.InventoryId,
-                ProductId = request.Id,
-                OldCost = currentItem.Cost,
-                OldPrice = currentItem.Price,
-                CurrentCost = request.Cost,
-                CurrentPrice = request.Price,
-                Quantity = request.Quantity,
-                UserId = currentUserId,
-                SectionId = request.SectionId,
-                TariffId = request.TariffId,
+                var inventoryDetail = new InventoryDetail()
+                {
+                    InventoryId = request.InventoryId,
+                    ProductId = request.Id,
+                    OldCost = currentItem.Cost,
+                    OldPrice = currentItem.Price,
+                    CurrentCost = request.Cost,
+                    CurrentPrice = request.Price,
+                    Quantity = request.Quantity,
+                    UserId = currentUserId,
+                    SectionId = request.SectionId,
+                    TariffId = request.TariffId,
+                    Difference = (request.Quantity - currentItem.Existence),
+                    TotalAmount = (request.Quantity * request.Cost),
 
-                CreationTime = DateTime.Now,
-                CreatorUserId = currentUserId,
-                IsActive = true,
-            };
+                    CreationTime = DateTime.Now,
+                    CreatorUserId = currentUserId,
+                    IsActive = true,
+                };
 
-            var result = db.InventoryDetails.Add(inventoryDetail);
-            db.SaveChanges();
+                var result = db.InventoryDetails.Add(inventoryDetail);
+                db.SaveChanges();
+            }
 
             response.Message = "Item guardado con éxito";
 
             return Ok(response);
+
         }
 
 
@@ -389,6 +540,19 @@ namespace JS.Base.WS.API.Controllers.Domain
 
 
         [HttpGet]
+        [AllowAnonymous]
+        [Route("GenerateInventoryPDF")]
+        public IHttpActionResult GenerateInventoryPDF()
+        {
+            var inventoryService = new InventoryServices();
+
+            inventoryService.GenerateInventoryDetailsPDF();
+
+            return Ok();
+        }
+
+
+        [HttpGet]
         [Route("GetSection")]
         public IEnumerable<SectionDTO> GetSection()
         {
@@ -418,6 +582,9 @@ namespace JS.Base.WS.API.Controllers.Domain
 
             return result;
         }
+
+
+
 
 
         private string RemoveAccents(string text)

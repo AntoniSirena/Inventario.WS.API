@@ -20,6 +20,7 @@ namespace JS.Base.WS.API.Models.Domain.Inventory
         public DateTime? ClosedDate { get; set; }
         public string OpenDateFormatted { get; set; }
         public string ClosedDateFormatted { get; set; }
+        public decimal TotalAmount { get; set; }
 
 
         [ForeignKey("StatusId")]

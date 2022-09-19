@@ -15,5 +15,7 @@ namespace JS.Base.WS.API.DTO.Domain
         public string Description { get; set; }
         public string OpenDate { get; set; }
         public string ClosedDate { get; set; }
+        public decimal TotalAmount { get; set; }
+
     }
 }

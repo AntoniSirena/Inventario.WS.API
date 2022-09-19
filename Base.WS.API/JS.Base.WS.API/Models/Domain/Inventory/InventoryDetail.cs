@@ -22,6 +22,9 @@ namespace JS.Base.WS.API.Models.Domain.Inventory
         public decimal CurrentCost { get; set; }
         public decimal CurrentPrice { get; set; }
         public decimal Quantity { get; set; }
+        public decimal Existence { get; set; }
+        public decimal TotalAmount { get; set; }
+        public decimal Difference { get; set; }
 
 
         [ForeignKey("InventoryId")]

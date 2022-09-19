@@ -31,6 +31,8 @@ namespace JS.Base.WS.API.DTO.Response.User
         public bool CanDoInventory { get; set; }
         public bool ShowCost { get; set; }
         public bool ShowPrice { get; set; }
+        public bool ShowSection { get; set; }
+        public bool ShowTariff { get; set; }
 
 
         public bool EnableShoppingCart { get; set; }

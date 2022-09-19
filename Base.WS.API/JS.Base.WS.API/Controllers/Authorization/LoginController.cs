@@ -358,6 +358,8 @@ namespace JS.Base.WS.API.Controllers.Authorization
                         CanDoInventory = currentUser.CanDoInventory,
                         ShowCost = inventoryConfiguration.ShowCost,
                         ShowPrice = inventoryConfiguration.ShowPrice,
+                        ShowSection = inventoryConfiguration.ShowSection,
+                        ShowTariff = inventoryConfiguration.ShowTariff,
 
                         //Crud
                         CanEdit = userRole.Role.CanEdit,

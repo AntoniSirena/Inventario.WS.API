@@ -13,5 +13,7 @@ namespace JS.Base.WS.API.Models.Domain.Inventory
         public int Id { get; set; }
         public bool ShowCost { get; set; }
         public bool ShowPrice { get; set; }
+        public bool ShowSection { get; set; }
+        public bool ShowTariff { get; set; }
     }
 }

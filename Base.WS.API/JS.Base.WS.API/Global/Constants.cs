@@ -202,7 +202,13 @@ namespace JS.Base.WS.API.Global
 
             public static string AllowShowAll_Inventory_ByRole { get { return ConfigurationParameterService.GetParameter("AllowShowAll_Inventory_ByRole") ?? "Admin"; } }
 
+            public static string TotalItemsPerPage_InventoryDetails { get { return ConfigurationParameterService.GetParameter("TotalItemsPerPage_InventoryDetails") ?? "20"; } }
 
+            public static string BusinessName { get { return ConfigurationParameterService.GetParameter("BusinessName") ?? ""; } }
+
+            public static string BusinessAddress { get { return ConfigurationParameterService.GetParameter("BusinessAddress") ?? ""; } }
+
+            
         }
 
     }

@@ -33,3 +33,4 @@ C:\Users\TEMP\Documents\Clients\Inventario\Inventario.WS.API\Base.WS.API\JS.Util
 C:\Users\TEMP\Documents\Clients\Inventario\Inventario.WS.API\Base.WS.API\JS.Utilities_\obj\Debug\JS.Utilities.csproj.CopyComplete
 C:\Users\TEMP\Documents\Clients\Inventario\Inventario.WS.API\Base.WS.API\JS.Utilities_\obj\Debug\JS.Utilities.dll
 C:\Users\TEMP\Documents\Clients\Inventario\Inventario.WS.API\Base.WS.API\JS.Utilities_\obj\Debug\JS.Utilities.pdb
+C:\Users\TEMP\Documents\Clients\Inventario\Inventario.WS.API\Base.WS.API\JS.Utilities_\obj\Debug\JS.Utilities.csprojAssemblyReference.cache

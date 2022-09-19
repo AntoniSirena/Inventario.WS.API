@@ -19,8 +19,8 @@ namespace JS.Base.WS.API
 
             config.MessageHandlers.Add(new TokenValidationHandler());
 
-            var cors = new EnableCorsAttribute("*", "*", "*");
-            config.EnableCors(cors);
+            //var cors = new EnableCorsAttribute("*", "Content-Type, Authorization", "GET, POST, PUT, DELETE, OPTIONS");
+            //config.EnableCors(cors);
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

@@ -17,5 +17,8 @@ namespace JS.Base.WS.API.Models.Domain
         public string BarCode { get; set; }
         public decimal Cost { get; set; }
         public decimal Price { get; set; }
+        public string Reference { get; set; }
+        public decimal Existence { get; set; }
+
     }
 }

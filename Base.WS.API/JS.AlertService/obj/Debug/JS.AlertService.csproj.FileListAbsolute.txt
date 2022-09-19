@@ -42,3 +42,4 @@ C:\Users\TEMP\Documents\Clients\Inventario\Inventario.WS.API\Base.WS.API\JS.Aler
 C:\Users\TEMP\Documents\Clients\Inventario\Inventario.WS.API\Base.WS.API\JS.AlertService\obj\Debug\JS.AlertService.csproj.CopyComplete
 C:\Users\TEMP\Documents\Clients\Inventario\Inventario.WS.API\Base.WS.API\JS.AlertService\obj\Debug\JS.AlertService.dll
 C:\Users\TEMP\Documents\Clients\Inventario\Inventario.WS.API\Base.WS.API\JS.AlertService\obj\Debug\JS.AlertService.pdb
+C:\Users\TEMP\Documents\Clients\Inventario\Inventario.WS.API\Base.WS.API\JS.AlertService\bin\Debug\JS.Utilities.dll.config
